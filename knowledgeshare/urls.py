@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from django.shortcuts import render
+
 from django.contrib import admin
 
+def welcome(request):
+    return render(request, 'blog/home/index.html', {})
+
 urlpatterns = [
+    path('', welcome),
     path('admin/', admin.site.urls),
     *static(settings.UPLOAD_URL, document_root=settings.UPLOAD_ROOT),
 ]
