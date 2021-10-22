@@ -1,4 +1,3 @@
-import os
 from django.db import models
 from django.conf import settings
 
@@ -15,7 +14,7 @@ def get_upload_path(instance, filename):
   )
 
 class Author(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
   bio = models.TextField()
   pseudonym = models.CharField(max_length=100, default=user.name)
 
@@ -35,6 +34,7 @@ class Category(models.Model):
     choices=STATUS_CHOICES,
     default=ACTIVE
   )
+  slug = models.SlugField(max_length=255, blank=True)
 
   def __str__(self):
     return self.title
@@ -63,10 +63,13 @@ class Article(models.Model):
     choices=STATUSES_CHOICES,
     default=DRAFT
   )
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
   # associations
   category = models.ForeignKey(Category, on_delete=models.CASCADE)
   author = models.ForeignKey(Author, on_delete=models.CASCADE)
+  slug = models.SlugField(max_length=255, blank=True)
 
   def is_status(self, status):
     return self.status == status
