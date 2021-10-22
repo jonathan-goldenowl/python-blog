@@ -70,6 +70,7 @@ class Article(models.Model):
   category = models.ForeignKey(Category, on_delete=models.CASCADE)
   author = models.ForeignKey(Author, on_delete=models.CASCADE)
   slug = models.SlugField(max_length=255, blank=True)
+  num_views = models.PositiveIntegerField('Number of views', default=0)
 
   def is_status(self, status):
     return self.status == status
