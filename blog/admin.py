@@ -4,7 +4,12 @@ from .models import Author, Article ,Category
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-  list_display = ('title', 'description', 'cover_image_tag', 'status', 'category', 'author', 'created_at', 'updated_at')
+  list_per_page = 20
+  search_fields = ['title']
+
+  list_display = ('title', 'description', 'cover_image_tag', 'status', 'created_at', 'updated_at')
+  list_filter = ('status', 'category', 'created_at')
+
   exclude = ('uuid', 'num_views')
   fieldsets = (
     (None, {
