@@ -9,3 +9,5 @@ def category_list(request):
       'categories': categories,
       'popular_posts': popular_posts,
     }
+
+  return {}
