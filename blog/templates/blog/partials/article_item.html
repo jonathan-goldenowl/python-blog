@@ -2,11 +2,11 @@
 <div class="post-entry-2 d-flex">
   <div
     class="thumbnail order-md-2"
-    style="background-image: url({% static article.cover_image %%})"
+    style="background-image: url({{ article.cover_image }})"
   ></div>
   <div class="contents order-md-1 pl-0">
     <h2>
-      <a href="blog-single.html">{{ article.title }}</a>
+      <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
     </h2>
     <p class="mb-3">{{ article.description }}</p>
     <div class="post-meta">
