@@ -1,0 +1,28 @@
+{% extends 'layout/session.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-9 col-lg-7 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-black text-center mb-5 fw-light fs-5">Edit Profile</h5>
+
+          {% include 'partials/messages.html' %}
+
+          {% load crispy_forms_tags %}
+
+          <form class="form-edit-profile" action="{% url 'users:edit_profile' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+
+            <div class="d-grid mt-5">
+              <button class="btn btn-primary btn-block btn-login text-uppercase fw-bold" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

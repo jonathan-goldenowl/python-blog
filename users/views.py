@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 
-from .forms import LoginForm, UserRegisterForm
+from .models import Profile
+from .forms import LoginForm, UserRegisterForm, UserUpdateForm, ProfileUpdateform
 
 
 def register(request):
@@ -48,3 +49,28 @@ def logout(request):
   messages.success(request, "You are logged out!")
 
   return redirect('/')
+
+@login_required
+def edit_profile(request):
+  user = request.user
+  profile, created = Profile.objects.get_or_create(user=user)
+
+  if request.method == 'POST':
+    user_form = UserUpdateForm(request.POST, instance=user)
+    profile_form = ProfileUpdateform(request.POST, request.FILES, instance=profile)
+
+    if user_form.is_valid() and profile_form.is_valid():
+      user_form.save()
+      profile_form.save()
+      messages.success(request, f'Your account has been updated!')
+      return redirect(reverse('root'))
+  else:
+    user_form = UserUpdateForm(instance=user)
+    profile_form = ProfileUpdateform(instance=profile)
+
+  context = {
+    'user_form': user_form,
+    'profile_form': profile_form,
+  }
+
+  return render(request, 'users/edit_profile.html', context)

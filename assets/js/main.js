@@ -1,8 +1,10 @@
-AOS.init({
-  duration: 800,
-  easing: "slide",
-  once: true,
-})
+if (typeof AOS != 'undefined') {
+  AOS.init({
+    duration: 800,
+    easing: "slide",
+    once: true,
+  })
+}
 
 jQuery(document).ready(function ($) {
   "use strict"
@@ -126,160 +128,179 @@ jQuery(document).ready(function ($) {
   }
   // siteSliderRange();
 
-  var siteCarousel = function () {
-    if ($(".hero-slide").length > 0) {
-      $(".hero-slide").owlCarousel({
+  if ($.fn.owlCarousel) {
+    var siteCarousel = function () {
+      if ($(".hero-slide").length > 0) {
+        $(".hero-slide").owlCarousel({
+          items: 1,
+          loop: true,
+          margin: 0,
+          autoplay: true,
+          nav: true,
+          dots: true,
+          navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+          smartSpeed: 1000,
+        })
+      }
+
+      if ($(".owl-slide-3").length > 0) {
+        $(".owl-slide-3").owlCarousel({
+          center: false,
+          items: 1,
+          loop: true,
+          stagePadding: 0,
+          margin: 30,
+          autoplay: true,
+          smartSpeed: 500,
+          nav: true,
+          dots: true,
+          navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+          responsive: {
+            600: {
+              items: 2,
+            },
+            1000: {
+              items: 2,
+            },
+            1200: {
+              items: 3,
+            },
+          },
+        })
+      }
+
+      if ($(".owl-slide").length > 0) {
+        $(".owl-slide").owlCarousel({
+          center: false,
+          items: 2,
+          loop: true,
+          stagePadding: 0,
+          margin: 30,
+          autoplay: true,
+          nav: true,
+          navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+          responsive: {
+            600: {
+              nav: true,
+              items: 2,
+            },
+            1000: {
+              stagePadding: 0,
+              nav: true,
+              items: 2,
+            },
+            1200: {
+              stagePadding: 0,
+              nav: true,
+              items: 2,
+            },
+          },
+        })
+      }
+
+      if ($(".nonloop-block-14").length > 0) {
+        $(".nonloop-block-14").owlCarousel({
+          center: false,
+          items: 1,
+          loop: true,
+          stagePadding: 0,
+          margin: 0,
+          autoplay: true,
+          nav: true,
+          navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+          responsive: {
+            600: {
+              margin: 20,
+              nav: true,
+              items: 2,
+            },
+            1000: {
+              margin: 30,
+              stagePadding: 0,
+              nav: true,
+              items: 2,
+            },
+            1200: {
+              margin: 30,
+              stagePadding: 0,
+              nav: true,
+              items: 3,
+            },
+          },
+        })
+      }
+
+      $(".slide-one-item").owlCarousel({
+        center: false,
         items: 1,
         loop: true,
+        stagePadding: 0,
         margin: 0,
         autoplay: true,
+        pauseOnHover: false,
         nav: true,
-        dots: true,
-        navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
-        smartSpeed: 1000,
+        navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">'],
       })
     }
-
-    if ($(".owl-slide-3").length > 0) {
-      $(".owl-slide-3").owlCarousel({
-        center: false,
-        items: 1,
-        loop: true,
-        stagePadding: 0,
-        margin: 30,
-        autoplay: true,
-        smartSpeed: 500,
-        nav: true,
-        dots: true,
-        navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
-        responsive: {
-          600: {
-            items: 2,
-          },
-          1000: {
-            items: 2,
-          },
-          1200: {
-            items: 3,
-          },
-        },
-      })
-    }
-
-    if ($(".owl-slide").length > 0) {
-      $(".owl-slide").owlCarousel({
-        center: false,
-        items: 2,
-        loop: true,
-        stagePadding: 0,
-        margin: 30,
-        autoplay: true,
-        nav: true,
-        navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
-        responsive: {
-          600: {
-            nav: true,
-            items: 2,
-          },
-          1000: {
-            stagePadding: 0,
-            nav: true,
-            items: 2,
-          },
-          1200: {
-            stagePadding: 0,
-            nav: true,
-            items: 2,
-          },
-        },
-      })
-    }
-
-    if ($(".nonloop-block-14").length > 0) {
-      $(".nonloop-block-14").owlCarousel({
-        center: false,
-        items: 1,
-        loop: true,
-        stagePadding: 0,
-        margin: 0,
-        autoplay: true,
-        nav: true,
-        navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
-        responsive: {
-          600: {
-            margin: 20,
-            nav: true,
-            items: 2,
-          },
-          1000: {
-            margin: 30,
-            stagePadding: 0,
-            nav: true,
-            items: 2,
-          },
-          1200: {
-            margin: 30,
-            stagePadding: 0,
-            nav: true,
-            items: 3,
-          },
-        },
-      })
-    }
-
-    $(".slide-one-item").owlCarousel({
-      center: false,
-      items: 1,
-      loop: true,
-      stagePadding: 0,
-      margin: 0,
-      autoplay: true,
-      pauseOnHover: false,
-      nav: true,
-      navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">'],
-    })
+    siteCarousel()
   }
-  siteCarousel()
 
-  var siteStellar = function () {
-    $(window).stellar({
-      responsive: false,
-      parallaxBackgrounds: true,
-      parallaxElements: true,
-      horizontalScrolling: false,
-      hideDistantElements: false,
-      scrollProperty: "scroll",
-    })
+  if ($.fn.stellar) {
+    var siteStellar = function () {
+      $(window).stellar({
+        responsive: false,
+        parallaxBackgrounds: true,
+        parallaxElements: true,
+        horizontalScrolling: false,
+        hideDistantElements: false,
+        scrollProperty: "scroll",
+      })
+    }
+    siteStellar()
   }
-  siteStellar()
 
-  var siteCountDown = function () {
-    $("#date-countdown").countdown("2020/10/10", function (event) {
-      var $this = $(this).html(
-        event.strftime(
-          "" +
-            '<span class="countdown-block"><span class="label">%w</span> weeks </span>' +
-            '<span class="countdown-block"><span class="label">%d</span> days </span>' +
-            '<span class="countdown-block"><span class="label">%H</span> hr </span>' +
-            '<span class="countdown-block"><span class="label">%M</span> min </span>' +
-            '<span class="countdown-block"><span class="label">%S</span> sec</span>'
+  if ($.fn.countdown) {
+    var siteCountDown = function () {
+      $("#date-countdown").countdown("2020/10/10", function (event) {
+        var $this = $(this).html(
+          event.strftime(
+            "" +
+              '<span class="countdown-block"><span class="label">%w</span> weeks </span>' +
+              '<span class="countdown-block"><span class="label">%d</span> days </span>' +
+              '<span class="countdown-block"><span class="label">%H</span> hr </span>' +
+              '<span class="countdown-block"><span class="label">%M</span> min </span>' +
+              '<span class="countdown-block"><span class="label">%S</span> sec</span>'
+          )
         )
-      )
-    })
-  }
-  siteCountDown()
-
-  var siteDatePicker = function () {
-    if ($(".datepicker").length > 0) {
-      $(".datepicker").datepicker()
+      })
     }
+    siteCountDown()
   }
-  siteDatePicker()
 
-  var siteSticky = function () {
-    $(".js-sticky-header").sticky({ topSpacing: 0 })
+  if ($.fn.datepicker) {
+    var siteDatePicker = function () {
+      let $dataOfBirth = $(".datepicker.date_of_birth")
+      if ($dataOfBirth.length > 0) {
+        $dataOfBirth.datepicker({
+          todayHighlight: true,
+          format: "mm/dd/yyyy",
+          endDate: new Date()
+        })
+      }
+
+      if ($(".datepicker").length > 0) {
+        $(".datepicker").datepicker()
+      }
+    }
+    siteDatePicker()
   }
-  siteSticky()
+
+  if ($.fn.sticky) {
+    var siteSticky = function () {
+      $(".js-sticky-header").sticky({ topSpacing: 0 })
+    }
+    siteSticky()
+  }
 
   // navigation
   var OnePageNavigation = function () {

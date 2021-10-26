@@ -39,7 +39,7 @@
       <div class="col-12 col-lg-4 d-flex">
         {% if user.is_authenticated %}
           <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
-            <a href="#" class="d-inline-block p-3"> My Profile </a>
+            <a href="{% url 'users:edit_profile' %}" class="d-inline-block p-3"> My Profile </a>
             <a href="{% url 'users:logout' %}" class="d-inline-block p-3"> Logout </a>
           </div>
         {% else %}
