@@ -1,0 +1,27 @@
+{% extends 'layout/session.html' %}
+
+{% block content %}
+  <div class="card border-0 shadow rounded-3 my-5">
+    <div class="card-body p-4 p-sm-5">
+      <h5 class="card-title text-black text-center mb-5 fw-light fs-5">Create your account</h5>
+
+      {% include 'partials/messages.html' %}
+
+      {% load crispy_forms_tags %}
+
+      <form method="post" action="{% url 'users:register' %}">
+        {% csrf_token %}
+
+        {{ register_form|crispy }}
+
+        <div class="d-grid mt-5">
+          <button class="btn btn-primary btn-block btn-login text-uppercase fw-bold" type="submit">Sign in</button>
+        </div>
+        <hr class="my-4" />
+        <div class="d-block">
+          <a class='text-black' href="{% url 'users:login' %}">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

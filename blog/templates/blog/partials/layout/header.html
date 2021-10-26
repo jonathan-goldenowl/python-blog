@@ -9,38 +9,45 @@
 <div class="header-top">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-12 col-lg-6 d-flex">
-        <a href="{% url 'root' %}" class="site-logo"> Meranda </a>
-        <a
-          href="#"
-          class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"
+      <div class="col-12 col-lg-4 d-flex">
+        <a href="{% url 'root' %}" class="site-logo">
+          Brain
+          <img
+            alt="svgImg"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMzIiIGhlaWdodD0iMzIiCnZpZXdCb3g9IjAgMCAyNCAyNCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBkPSJNIDE4IDIgQyAxNi4zNTQ5OSAyIDE1IDMuMzU0OTkwNCAxNSA1IEMgMTUgNS4xOTA5NTI5IDE1LjAyMTc5MSA1LjM3NzEyMjQgMTUuMDU2NjQxIDUuNTU4NTkzOCBMIDcuOTIxODc1IDkuNzIwNzAzMSBDIDcuMzk4NTM5OSA5LjI3Nzg1MzkgNi43MzIwNzcxIDkgNiA5IEMgNC4zNTQ5OTA0IDkgMyAxMC4zNTQ5OSAzIDEyIEMgMyAxMy42NDUwMSA0LjM1NDk5MDQgMTUgNiAxNSBDIDYuNzMyMDc3MSAxNSA3LjM5ODUzOTkgMTQuNzIyMTQ2IDcuOTIxODc1IDE0LjI3OTI5NyBMIDE1LjA1NjY0MSAxOC40Mzk0NTMgQyAxNS4wMjE1NTUgMTguNjIxNTE0IDE1IDE4LjgwODM4NiAxNSAxOSBDIDE1IDIwLjY0NTAxIDE2LjM1NDk5IDIyIDE4IDIyIEMgMTkuNjQ1MDEgMjIgMjEgMjAuNjQ1MDEgMjEgMTkgQyAyMSAxNy4zNTQ5OSAxOS42NDUwMSAxNiAxOCAxNiBDIDE3LjI2NzQ4IDE2IDE2LjYwMTU5MyAxNi4yNzkzMjggMTYuMDc4MTI1IDE2LjcyMjY1NiBMIDguOTQzMzU5NCAxMi41NTg1OTQgQyA4Ljk3ODIwOTUgMTIuMzc3MTIyIDkgMTIuMTkwOTUzIDkgMTIgQyA5IDExLjgwOTA0NyA4Ljk3ODIwOTUgMTEuNjIyODc4IDguOTQzMzU5NCAxMS40NDE0MDYgTCAxNi4wNzgxMjUgNy4yNzkyOTY5IEMgMTYuNjAxNDYgNy43MjIxNDYxIDE3LjI2NzkyMyA4IDE4IDggQyAxOS42NDUwMSA4IDIxIDYuNjQ1MDA5NiAyMSA1IEMgMjEgMy4zNTQ5OTA0IDE5LjY0NTAxIDIgMTggMiB6IE0gMTggNCBDIDE4LjU2NDEyOSA0IDE5IDQuNDM1ODcwNiAxOSA1IEMgMTkgNS41NjQxMjk0IDE4LjU2NDEyOSA2IDE4IDYgQyAxNy40MzU4NzEgNiAxNyA1LjU2NDEyOTQgMTcgNSBDIDE3IDQuNDM1ODcwNiAxNy40MzU4NzEgNCAxOCA0IHogTSA2IDExIEMgNi41NjQxMjk0IDExIDcgMTEuNDM1ODcxIDcgMTIgQyA3IDEyLjU2NDEyOSA2LjU2NDEyOTQgMTMgNiAxMyBDIDUuNDM1ODcwNiAxMyA1IDEyLjU2NDEyOSA1IDEyIEMgNSAxMS40MzU4NzEgNS40MzU4NzA2IDExIDYgMTEgeiBNIDE4IDE4IEMgMTguNTY0MTI5IDE4IDE5IDE4LjQzNTg3MSAxOSAxOSBDIDE5IDE5LjU2NDEyOSAxOC41NjQxMjkgMjAgMTggMjAgQyAxNy40MzU4NzEgMjAgMTcgMTkuNTY0MTI5IDE3IDE5IEMgMTcgMTguNDM1ODcxIDE3LjQzNTg3MSAxOCAxOCAxOCB6Ij48L3BhdGg+PC9zdmc+"
+          />
+        </a>
+        <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"
           ><span class="icon-menu h3"></span
         ></a>
       </div>
-      <div class="col-12 col-lg-6 ml-auto d-flex">
-        <div class="ml-md-auto top-social d-none d-lg-inline-block">
-          <a href="#" class="d-inline-block p-3"
-            ><span class="icon-facebook"></span
-          ></a>
-          <a href="#" class="d-inline-block p-3"
-            ><span class="icon-twitter"></span
-          ></a>
-          <a href="#" class="d-inline-block p-3"
-            ><span class="icon-instagram"></span
-          ></a>
-        </div>
-        <form action="#" class="search-form d-inline-block">
+      <div class="col-12 col-lg-4 d-flex">
+        {% comment %} <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
+          <a href="#" class="d-inline-block p-3"><span class="icon-facebook"></span></a>
+          <a href="#" class="d-inline-block p-3"><span class="icon-twitter"></span></a>
+          <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
+        </div> {% endcomment %}
+        <form action="#" class="search-form w-100">
           <div class="d-flex">
-            <input
-              type="email"
-              class="form-control"
-              placeholder="Search..."
-            />
+            <input type="email" class="form-control" placeholder="Search..." />
             <button type="submit" class="btn btn-secondary">
               <span class="icon-search"></span>
             </button>
           </div>
         </form>
+      </div>
+      <div class="col-12 col-lg-4 d-flex">
+        {% if user.is_authenticated %}
+          <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
+            <a href="#" class="d-inline-block p-3"> My Profile </a>
+            <a href="{% url 'users:logout' %}" class="d-inline-block p-3"> Logout </a>
+          </div>
+        {% else %}
+          <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
+            <a href="{% url 'users:login' %}" class="d-inline-block p-3"> Sign In </a>
+            <a href="{% url 'users:register' %}" class="d-inline-block p-3"> Sign Up </a>
+          </div>
+        {% endif %}
       </div>
       <div class="col-6 d-block d-lg-none text-right"></div>
     </div>

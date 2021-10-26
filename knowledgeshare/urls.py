@@ -23,6 +23,7 @@ from blog.views import HomeView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='root'),
+    path('', include('users.urls')),
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
     *static(settings.UPLOAD_URL, document_root=settings.UPLOAD_ROOT),

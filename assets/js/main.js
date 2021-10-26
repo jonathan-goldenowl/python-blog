@@ -342,5 +342,10 @@ jQuery(document).ready(function ($) {
 
     // Update views number for article
     updateNumberViewsOfObject($("article[data-num-views-object]"))
+
+    let message = $('#message').data('message')
+    if (!!message) {
+      $.notify(message, { type: 'info' })
+    }
   })
 })

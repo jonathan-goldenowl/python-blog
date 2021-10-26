@@ -3,14 +3,8 @@
   <head>
     <title>Meranda &mdash; Website Template by Colorlib</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/fonts/icomoon/style.css" />
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/css/jquery-ui.css" />
@@ -21,44 +15,23 @@
     <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css" />
     <link rel="stylesheet" href="/assets/fonts/flaticon/font/flaticon.css" />
     <link rel="stylesheet" href="/assets/css/aos.css" />
-    <link
-      href="/assets/css/jquery.mb.YTPlayer.min.css"
-      media="all"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="/assets/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <div class="site-wrap">
-      {% include 'blog/partials/layout/header.html' %}
+      {% if messages %}
+        <div id="message" class="d-none" data-message="{{ messages|join:"<br>" }}"></div>
+      {% endif %}
 
-      {% block content %}{% endblock %}
-
-      {% include 'blog/partials/layout/footer.html' %}
+      {% include 'blog/partials/layout/header.html' %} {% block content %}{% endblock %} {% include
+      'blog/partials/layout/footer.html' %}
     </div>
 
     <div id="loader" class="show fullscreen">
       <svg class="circular" width="48px" height="48px">
-        <circle
-          class="path-bg"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke="#eeeeee"
-        />
-        <circle
-          class="path"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke="#ff5e15"
-        />
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#ff5e15" />
       </svg>
     </div>
     <script src="/assets/js/libraries/jquery-3.3.1.min.js"></script>
@@ -66,6 +39,7 @@
     <script src="/assets/js/libraries/jquery-ui.js"></script>
     <script src="/assets/js/libraries/popper.min.js"></script>
     <script src="/assets/js/libraries/bootstrap.min.js"></script>
+    <script src="/assets/js/libraries/bootstrap-notify.min.js"></script>
     <script src="/assets/js/libraries/owl.carousel.min.js"></script>
     <script src="/assets/js/libraries/jquery.stellar.min.js"></script>
     <script src="/assets/js/libraries/jquery.countdown.min.js"></script>
