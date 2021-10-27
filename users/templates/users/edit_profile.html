@@ -4,31 +4,29 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-12 col-md-9 col-lg-7 mx-auto">
-      <div class="card border-0 shadow rounded-3 my-5">
-        <div class="card-body p-4 p-sm-5">
-          <h5 class="card-title text-black text-center mb-5 fw-light fs-5">Edit Profile</h5>
+    <div class="col-12 col-md-9 col-lg-7 mx-auto my-5">
+      <h4 class="text-black text-center mb-5 fw-light fs-5">Edit Profile</h4>
 
-          {% include 'partials/messages.html' %}
+      {% include 'partials/messages.html' %}
 
-          {% load crispy_forms_tags %}
+      {% load crispy_forms_tags %}
 
-          <form class="form-edit-profile" action="{% url 'users:edit_profile' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+      <form class="form-edit-profile" action="{% url 'users:edit_profile' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
 
-            {{ user_form|crispy }}
-            {{ profile_form|crispy }}
+        {{ user_form|crispy }}
+        {{ profile_form|crispy }}
 
-            <div class="d-grid mt-5">
-              <button class="btn btn-primary btn-block btn-login text-uppercase fw-bold" type="submit">Submit</button>
-            </div>
-
-            <div class="d-grid mt-5">
-              <a class='text-black' href="{% url 'users:password_change' %}"> Change password </a>
-            </div>
-          </form>
+        <div class="d-flex justify-content-center align-items-center mt-5">
+          <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit</button>
+          <a class="btn btn-default" href="{% url 'root' %}">Cancel</a>
         </div>
-      </div>
+
+        <div class="d-grid mt-5">
+          <a class='text-black' href="{% url 'users:password_change' %}"> Change password </a>
+        </div>
+      </form>
+      <br class="mb-5">
     </div>
   </div>
 {% endblock %}
