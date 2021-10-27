@@ -1,5 +1,7 @@
 {% extends 'layout/session.html' %}
 
+{% block title %} Edit Profile {% endblock %}
+
 {% block content %}
   <div class="row">
     <div class="col-12 col-md-9 col-lg-7 mx-auto">
@@ -19,6 +21,10 @@
 
             <div class="d-grid mt-5">
               <button class="btn btn-primary btn-block btn-login text-uppercase fw-bold" type="submit">Submit</button>
+            </div>
+
+            <div class="d-grid mt-5">
+              <a class='text-black' href="{% url 'users:password_change' %}"> Change password </a>
             </div>
           </form>
         </div>

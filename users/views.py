@@ -124,3 +124,8 @@ def password_reset_request(request):
   context = { 'password_reset_form' : password_reset_form }
 
   return render(request, 'users/password/password_reset.html', context)
+
+@login_required
+def password_changed(request):
+  messages.success(request, 'Your password has been changed.')
+  return redirect(request.POST.get('next', reverse('users:edit_profile')))
