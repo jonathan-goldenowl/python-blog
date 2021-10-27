@@ -76,6 +76,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'knowledgeshare.wsgi.application'
 
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_SENDER = 'admin@example.com'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = env('EMAIL_HOST', default='localhost')
+EMAIL_PORT = env('EMAIL_PORT', default=587)
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='me@gmail.com')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='password')
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
