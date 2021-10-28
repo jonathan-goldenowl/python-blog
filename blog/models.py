@@ -38,6 +38,7 @@ class Category(models.Model):
     default=ACTIVE
   )
   slug = models.SlugField(max_length=255, blank=True)
+  featured = models.BooleanField(default=False, null=False)
 
   def __str__(self):
     return self.title
@@ -75,6 +76,7 @@ class Article(models.Model):
   author = models.ForeignKey(Author, on_delete=models.CASCADE)
   slug = models.SlugField(max_length=255, blank=True)
   num_views = models.PositiveIntegerField('Number of views', default=0)
+  featured = models.BooleanField(default=False, null=False)
 
   def cover_image_tag(self):
     return mark_safe('<img src="/%s" width="150" height="150" style="object-fit: scale-down">' % self.cover_image)
