@@ -7,18 +7,17 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
 
-class PictureWidget(forms.widgets.Widget):
+class PictureWidget(forms.widgets.FileInput):
   def render(self, name, value, attrs=None, **kwargs):
-    html = Template(
-      """
-        <div style="max-width: 250px">
-          <img class="img-thumbnail" src="$link"/>
-        </div>
-        <br>
-        <input type="file" name="$name" />
-      """
-    )
-    return mark_safe(html.substitute(link=value, name=name))
+    img_template = Template("""
+      <div style="max-width: 250px">
+        <img class="img-thumbnail" src="$link"/>
+      </div>
+      <br>
+    """)
+    img_html = mark_safe(img_template.substitute(link=value))
+    input_html = super().render(name, value, attrs=None, **kwargs)
+    return f'{img_html}{input_html}'
 
 class LoginForm(forms.Form):
   username = forms.CharField(
