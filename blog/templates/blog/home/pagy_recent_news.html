@@ -1,0 +1,15 @@
+<div class="pagination">
+  <ul class="custom-pagination list-unstyled">
+    {% with recent_news.paginator.page_range as page_range %}
+      {% if page_range|length > 0 %}
+        {% for i in page_range %}
+          {% if i == recent_news.number %}
+            <li class="active">{{ i }}</li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </ul>
+</div>

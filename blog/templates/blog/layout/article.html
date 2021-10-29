@@ -12,33 +12,7 @@
           </div>
 
           <div class="col-lg-3 ml-auto">
-            <div class="section-title">
-              <h2>Popular Posts</h2>
-            </div>
-            {% for article in popular_posts %}
-              <div class="trend-entry d-flex">
-                <div class="number align-self-start">{{ forloop.counter|stringformat:"02d" }}</div>
-                <div class="trend-contents">
-                  <h2>
-                    <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a>
-                  </h2>
-                  <div class="post-meta">
-                    <span class="d-block">
-                      {% with category=article.category %}
-                        <a href="#">{{ article.author.pseudonym }}</a> in <a href="{% url 'blog:category' slug=category.slug %}">{{ category.title }}</a>
-                      {% endwith %}
-                    </span>
-                    <span class="date-read text-capitalize">{{ article.created_at|date:'b d, Y' }}</span>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-            <p>
-              <a href="#" class="more"
-                >See All Popular
-                <span class="icon-keyboard_arrow_right"></span
-              ></a>
-            </p>
+            {% include 'blog/partials/popular_posts.html' with popular_posts=popular_posts %}
           </div>
         </div>
       </div>
