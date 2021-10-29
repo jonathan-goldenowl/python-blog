@@ -24,8 +24,11 @@
         <div id="message" class="d-none" data-message="{{ messages|join:"<br>" }}"></div>
       {% endif %}
 
-      {% include 'blog/partials/layout/header.html' %} {% block content %}{% endblock %} {% include
-      'blog/partials/layout/footer.html' %}
+      {% include 'blog/partials/layout/header.html' %}
+
+      {% block content %}{% endblock %}
+
+      {% include 'blog/partials/layout/footer.html' %}
     </div>
 
     <div id="loader" class="show fullscreen">

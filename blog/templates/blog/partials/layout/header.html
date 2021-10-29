@@ -22,14 +22,9 @@
         ></a>
       </div>
       <div class="col-12 col-lg-4 d-flex">
-        {% comment %} <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
-          <a href="#" class="d-inline-block p-3"><span class="icon-facebook"></span></a>
-          <a href="#" class="d-inline-block p-3"><span class="icon-twitter"></span></a>
-          <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
-        </div> {% endcomment %}
-        <form action="#" class="search-form w-100">
+        <form action="{% url 'blog:articles' %}" class="search-form w-100">
           <div class="d-flex">
-            <input type="email" class="form-control" placeholder="Search..." />
+            <input type="text" name="q" class="form-control" placeholder="Search..." autocomplete="off" value="{% if search_for %}{{search_for }}{% endif %}" />
             <button type="submit" class="btn btn-secondary">
               <span class="icon-search"></span>
             </button>
@@ -38,15 +33,15 @@
       </div>
       <div class="col-12 col-lg-4 d-flex">
         {% if user.is_authenticated %}
-          <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
-            <a href="{% url 'users:edit_profile' %}" class="d-inline-block p-3"> My Profile </a>
-            <a href="{% url 'users:logout' %}" class="d-inline-block p-3"> Logout </a>
-          </div>
+        <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
+          <a href="{% url 'users:edit_profile' %}" class="d-inline-block p-3"> My Profile </a>
+          <a href="{% url 'users:logout' %}" class="d-inline-block p-3"> Logout </a>
+        </div>
         {% else %}
-          <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
-            <a href="{% url 'users:login' %}" class="d-inline-block p-3"> Sign In </a>
-            <a href="{% url 'users:register' %}" class="d-inline-block p-3"> Sign Up </a>
-          </div>
+        <div class="ml-md-auto top-social d-none d-lg-inline-block text-nowrap">
+          <a href="{% url 'users:login' %}" class="d-inline-block p-3"> Sign In </a>
+          <a href="{% url 'users:register' %}" class="d-inline-block p-3"> Sign Up </a>
+        </div>
         {% endif %}
       </div>
       <div class="col-6 d-block d-lg-none text-right"></div>

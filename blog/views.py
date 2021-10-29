@@ -56,6 +56,31 @@ class ArticleDetailView(generic.DetailView):
   model = Article
   template_name = 'blog/article_detail.html'
 
+class ArticleListView(generic.ListView):
+  model = Article
+  template_name = 'blog/article_list.html'
+
+  def get_queryset(self):
+    search_for = self.request.GET.get('q')
+    articles = super().get_queryset().filter(status=Article.PUBLISHED)
+    if search_for:
+      articles = articles.filter(title__icontains=search_for)
+
+    return articles
+
+  def get_context_data(self, **kwargs):
+    per_page = 10
+    page_number = self.request.GET.get('page') or 1
+    search_for = self.request.GET.get('q')
+
+    context = super(ArticleListView, self).get_context_data(**kwargs)
+    paginator = Paginator(context['article_list'], per_page)
+
+    context['page_articles'] = paginator.get_page(page_number)
+    context['search_for'] = search_for
+
+    return context
+
 def num_views_object(request, slug):
   if request.method == 'POST':
     try:
