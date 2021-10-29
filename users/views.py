@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib import messages
 from django.urls import reverse
+from django.views import generic
 
 
 from django.core.mail import send_mail, BadHeaderError
@@ -129,3 +130,14 @@ def password_reset_request(request):
 def password_changed(request):
   messages.success(request, 'Your password has been changed.')
   return redirect(request.POST.get('next', reverse('users:edit_profile')))
+
+class UserProfile(generic.DetailView):
+  login_required = True
+  model = Profile
+  template_name = 'users/user_profile.html'
+
+  def get_object(self):
+    username = self.kwargs.get('slug')
+    if username:
+      return self.model.objects.get(user__username=username)
+    return self.request.user.profile

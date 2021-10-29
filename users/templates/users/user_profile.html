@@ -1,0 +1,155 @@
+{% extends 'layout/session.html' %}
+
+{% block title %}User Profile{% endblock title %}
+
+{% block content %}
+  <div class="container emp-profile">
+    <form method="post">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img
+              class="img-thumbnail mb-5"
+              src="{{ profile.get_avatar_url }}"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5>{{ profile.user.fullname }}</h5>
+            {% if profile.user.author %}
+              <h6>{{ profile.user.author }}</h6>
+            {% endif %}
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                  >Timeline</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% if user %}{% endif %}
+        <div class="col-md-2">
+          <a class="btn btn-dark text-capitalize" href="{% url 'users:edit_profile' %}">Edit Profile</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-bio">
+            <h6>Bio</h6>
+            <p>{{ profile.bio }}</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              {% with profile.user as profile_user %}
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Username</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{ profile_user.username }}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Full Name</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{ profile_user.fullname }}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Email</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{ profile_user.email }}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Date of Birth</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="text-capitalize">{{ profile_user.date_of_birth|date:'b d, Y' }}</p>
+                  </div>
+                </div>
+              {% endwith %}
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Experience</label>
+                </div>
+                <div class="col-md-6">
+                  <p>Expert</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Hourly Rate</label>
+                </div>
+                <div class="col-md-6">
+                  <p>10$/hr</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Total Projects</label>
+                </div>
+                <div class="col-md-6">
+                  <p>230</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>English Level</label>
+                </div>
+                <div class="col-md-6">
+                  <p>Expert</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Availability</label>
+                </div>
+                <div class="col-md-6">
+                  <p>6 months</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Your Bio</label><br />
+                  <p>Your detail description</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

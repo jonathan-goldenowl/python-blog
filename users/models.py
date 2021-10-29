@@ -1,8 +1,13 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 User = get_user_model()
+
+def user_fullname(self):
+	return "{0} {1}".format(self.first_name, self.last_name)
+User.add_to_class('fullname', user_fullname)
 
 def get_avatar_upload_path(instance, filename):
   user = instance.user
@@ -17,5 +22,8 @@ class Profile(models.Model):
 	def __str__(self):
 		return str(self.user.username)
 
-	def get_absolute_url(self):
-		return "/users/{}".format(self.user.username)
+	def get_profile_url(self):
+		return reverse('users:user_profile', slug=self.user.username)
+
+	def get_avatar_url(self):
+		return self.avatar.url or '/assets/images/default-avatar.jpeg'
