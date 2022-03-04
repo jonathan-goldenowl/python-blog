@@ -9,15 +9,15 @@ from .models import Profile
 
 class PictureWidget(forms.widgets.FileInput):
   def render(self, name, value, attrs=None, **kwargs):
-    img_template = Template("""
-      <div style="max-width: 250px">
-        <img class="img-thumbnail" src="$link"/>
-      </div>
-      <br>
-    """)
-    img_html = mark_safe(img_template.substitute(link=value))
     input_html = super().render(name, value, attrs=None, **kwargs)
-    return f'{img_html}{input_html}'
+
+    if value:
+      img_template = Template("""
+        <div style="max-width: 250px"><img class="img-thumbnail" src="$link"/></div><br>
+      """)
+      img_html = mark_safe(img_template.substitute(link=value))
+      return f'{img_html}{input_html}'
+    return input_html
 
 class LoginForm(forms.Form):
   username = forms.CharField(
@@ -47,7 +47,7 @@ class UserUpdateForm(forms.ModelForm):
 		model = User
 		fields = ('username', 'first_name', 'last_name', 'email')
 
-class ProfileUpdateform(forms.ModelForm):
+class ProfileUpdateForm(forms.ModelForm):
   date_of_birth = forms.DateField(
     widget=forms.DateInput(
       format=('%m/%d/%Y'),

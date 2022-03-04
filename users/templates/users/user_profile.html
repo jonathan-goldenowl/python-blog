@@ -34,25 +34,28 @@
                   >About</a
                 >
               </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="profile-tab"
-                  data-toggle="tab"
-                  href="#profile"
-                  role="tab"
-                  aria-controls="profile"
-                  aria-selected="false"
-                  >Timeline</a
-                >
-              </li>
+              {% if profile.user.author %}
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="profile-tab"
+                    data-toggle="tab"
+                    href="#profile"
+                    role="tab"
+                    aria-controls="profile"
+                    aria-selected="false"
+                    >Articles</a
+                  >
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
-        {% if user %}{% endif %}
-        <div class="col-md-2">
-          <a class="btn btn-dark text-capitalize" href="{% url 'users:edit_profile' %}">Edit Profile</a>
-        </div>
+        {% if user.pk == profile.user_id %}
+          <div class="col-md-2">
+            <a class="btn btn-dark text-capitalize" href="{% url 'users:edit_profile' %}">Edit Profile</a>
+          </div>
+        {% endif %}
       </div>
       <div class="row">
         <div class="col-md-4">
@@ -94,7 +97,7 @@
                     <label>Date of Birth</label>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-capitalize">{{ profile_user.date_of_birth|date:'b d, Y' }}</p>
+                    <p class="text-capitalize">{{ profile.date_of_birth|date:'b d, Y' }}</p>
                   </div>
                 </div>
               {% endwith %}

@@ -17,7 +17,7 @@ from django.conf import settings
 
 
 from .models import Profile
-from .forms import LoginForm, UserRegisterForm, UserUpdateForm, ProfileUpdateform
+from .forms import LoginForm, UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
 User = get_user_model()
@@ -70,7 +70,7 @@ def edit_profile(request):
 
   if request.method == 'POST':
     user_form = UserUpdateForm(request.POST, instance=user)
-    profile_form = ProfileUpdateform(request.POST, request.FILES, instance=profile)
+    profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
 
     if user_form.is_valid() and profile_form.is_valid():
       user_form.save()
@@ -79,7 +79,7 @@ def edit_profile(request):
       return redirect(reverse('root'))
   else:
     user_form = UserUpdateForm(instance=user)
-    profile_form = ProfileUpdateform(instance=profile)
+    profile_form = ProfileUpdateForm(instance=profile)
 
   context = {
     'user_form': user_form,
@@ -140,4 +140,10 @@ class UserProfile(generic.DetailView):
     username = self.kwargs.get('slug')
     if username:
       return self.model.objects.get(user__username=username)
-    return self.request.user.profile
+
+    try:
+      profile = self.request.user.profile
+    except Profile.DoesNotExist:
+      profile = Profile(user=self.request.user)
+
+    return profile
