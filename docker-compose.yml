@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    restart: always
+    command: ./docker-entries/wait-for-postgres.sh db ./docker-entries/start_app.sh
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: knowledgeshare
+      SERVER_PORT: 8000
+    volumes:
+      - ./:/app
+      - ./uploads:/app/uploads
+    ports:
+      - 8000:8000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+  db:
+    image: postgres:13.4-alpine
+    restart: on-failure
+    command: postgres -c listen_addresses='*'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: knowledgeshare
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
